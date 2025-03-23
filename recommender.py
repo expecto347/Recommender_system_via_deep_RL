@@ -212,8 +212,8 @@ class DRRAgent:
                 plt.savefig(os.path.join(self.save_model_weight_dir, f'images/training_precision_%_top_5.png'))
 
             if (episode+1)%1000 == 0 or episode == max_episode_num-1:
-                self.save_model(os.path.join(self.save_model_weight_dir, f'actor_{episode+1}_fixed.h5'),
-                                os.path.join(self.save_model_weight_dir, f'critic_{episode+1}_fixed.h5'))
+                self.save_model(os.path.join(self.save_model_weight_dir, f'actor_{episode+1}_fixed.weights.h5 '),
+                                os.path.join(self.save_model_weight_dir, f'critic_{episode+1}_fixed.weights.h5 '))
 
     def save_model(self, actor_path, critic_path):
         self.actor.save_weights(actor_path)

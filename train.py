@@ -22,8 +22,19 @@ if __name__ == "__main__":
     print('Data loading...')
 
     #Loading datasets
-    ratings_list = [i.strip().split("::") for i in open(os.path.join(DATA_DIR,'ratings.dat'), 'r').readlines()]
-    users_list = [i.strip().split("::") for i in open(os.path.join(DATA_DIR,'users.dat'), 'r').readlines()]
+    # 读取 ratings.dat，并将每个元素转换成 int 类型
+    with open(os.path.join(DATA_DIR, 'ratings.dat'), 'r') as f:
+        ratings_list = [list(map(int, line.strip().split("::"))) for line in f.readlines()]
+
+    # 如果用户和电影数据也需要转换，则可以类似处理
+    with open(os.path.join(DATA_DIR, 'users.dat'), 'r') as f:
+        users_list = [line.strip().split("::") for line in f.readlines()]
+    with open(os.path.join(DATA_DIR, 'movies.dat'), encoding='latin-1') as f:
+        movies_list = [line.strip().split("::") for line in f.readlines()]
+    movies_list = [i.strip().split("::") for i in open(os.path.join(DATA_DIR,'movies.dat'),encoding='latin-1').readlines()]
+    ratings_df = pd.DataFrame(ratings_list, columns = ['UserID', 'MovieID', 'Rating', 'Timestamp'], dtype = np.uint32)
+    movies_df = pd.DataFrame(movies_list, columns = ['MovieID', 'Title', 'Genres'])
+    movies_df['MovieID'] = movies_df['MovieID'].apply(pd.to_numeric)
     movies_list = [i.strip().split("::") for i in open(os.path.join(DATA_DIR,'movies.dat'),encoding='latin-1').readlines()]
     ratings_df = pd.DataFrame(ratings_list, columns = ['UserID', 'MovieID', 'Rating', 'Timestamp'], dtype = np.uint32)
     movies_df = pd.DataFrame(movies_list, columns = ['MovieID', 'Title', 'Genres'])
