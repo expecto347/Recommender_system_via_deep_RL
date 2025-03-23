@@ -10,10 +10,12 @@ from envs import OfflineEnv
 from recommender import DRRAgent
 
 import os
+
+os.chdir("/content/Recommender_system_via_deep_RL")
 ROOT_DIR = os.getcwd()
-DATA_DIR = os.path.join(ROOT_DIR, 'ml-1m/ml-1m')
+DATA_DIR = os.path.join(ROOT_DIR, '../ml-1m')
 STATE_SIZE = 10
-MAX_EPISODE_NUM = 10
+MAX_EPISODE_NUM = 100
 
 # os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
