@@ -47,7 +47,7 @@ class DRRAgent:
         # self.embedding_network([np.zeros((1)),np.zeros((1,100))])
         self.save_model_weight_dir = f"./save_model/trail-{datetime.now().strftime('%Y-%m-%d-%H')}"
         if not os.path.exists(self.save_model_weight_dir):
-            os.makedirs(os.path.join(self.save_model_weight_dir, 'imagess'))
+            os.makedirs(os.path.join(self.save_model_weight_dir, 'images'))
         embedding_save_file_dir = './save_weights/user_movie_embedding_case4.h5'
         assert os.path.exists(embedding_save_file_dir), f"embedding save file directory: '{embedding_save_file_dir}' is wrong."
         self.embedding_network.load_weights(embedding_save_file_dir)
